@@ -6,7 +6,7 @@ services:
       - "5433:5432"
     restart: always
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - db-data:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -41,3 +41,6 @@ services:
         condition: service_healthy
     environment:
       - DATABASE_URL=postgres://postgres:postgres@db:5432/quiz_service_db?sslmode=disable
+
+volumes:
+  db-data:

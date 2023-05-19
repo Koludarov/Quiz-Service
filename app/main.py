@@ -14,7 +14,7 @@ def get_questions(request: QuestionRequest) -> QuestionsListData:
     session = open_session()
     while len(questions) < request.questions_num:
         question = get_question()
-        existing_question = question_exists(question.question_text, session)
+        existing_question = question_exists(question.question_id, session)
         if existing_question:
             continue
         create_question(question, session)
@@ -22,6 +22,7 @@ def get_questions(request: QuestionRequest) -> QuestionsListData:
         questions.append(
             QuestionData(
                 id=question.id,
+                question_id=question.question_id,
                 question_text=question.question_text,
                 answer_text=question.answer_text,
                 created_at=question.created_at

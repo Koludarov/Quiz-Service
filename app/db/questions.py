@@ -23,5 +23,5 @@ def create_question(question: Question, session):
     logger.info(f'Вопрос id {question.id} добавлен')
 
 
-def question_exists(question_text: str, session):
-    return session.query(Question).filter_by(question_text=question_text).first()
+def question_exists(question_id: int, session):
+    return session.query(Question).filter_by(question_id=question_id).first()
