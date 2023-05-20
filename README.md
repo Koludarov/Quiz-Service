@@ -21,7 +21,7 @@
 
    ```bash
    git clone https://github.com/Koludarov/Quiz-Service
-   cd Audio-Service
+   cd Quiz-Service
     ```
 2. Соберите и запустите Docker-контейнеры:
     
@@ -74,3 +74,38 @@ POST /questions
   ]
 }
    ```
+GET /questions/{id}
+Получает вопрос по id из базы данных, где id - целое число.
+
+## Пример запроса
+
+`curl -X 'GET' \
+  'http://localhost:8000/questions/1' \
+  -H 'accept: application/json'`
+
+
+
+## Ответ
+
+Ответ будет представлен в виде JSON-массива и будет содержать полученные вопрос для викторины.
+Пример:
+   ```json
+{
+  "id": 1,
+  "question_id": 107599,
+  "question_text": "\"Toward\"; or, one point up in a tennis game",
+  "answer_text": "ad",
+  "created_at": "2022-12-30T19:36:58.876000+00:00"
+}
+   ```
+
+## Тестирование
+Для тестирования корректной работы endpoint'ов, нужно при работающем сервисе запустить следующую команду в терминале:
+
+```bash
+# Запуск тестов для endpoint'ов
+python -m unittest discover -s tests -p test_quiz_service_endpoint.py
+ ```
+**Описание тестов**
+* `test_get_questions`: Проверяет получение списка вопросов.
+* `test_get_question`: Проверяет получение конкретного вопроса.
