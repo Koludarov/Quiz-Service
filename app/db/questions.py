@@ -25,3 +25,7 @@ def create_question(question: Question, session):
 
 def question_exists(question_id: int, session):
     return session.query(Question).filter_by(question_id=question_id).first()
+
+
+def get_question_by_idx(question_id: int, session):
+    return session.query(Question).filter_by(id=question_id).first()

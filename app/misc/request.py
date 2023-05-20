@@ -2,7 +2,7 @@ import requests
 from app.models.questions import Question
 
 
-def get_question() -> Question:
+def get_question_data() -> Question:
     response = requests.get("https://jservice.io/api/random?count=1").json()
     question_data = response[0]
     question = Question(
