@@ -43,6 +43,7 @@ def add_questions(request: QuestionRequest) -> QuestionsListData:
 
 @app.get("/questions/{idx}")
 def get_question(idx: int = Path(..., description="Question ID")) -> QuestionData:
+    """Получает вопрос по id из базы данных."""
     session = open_session()
     question = get_question_by_idx(idx, session)
     session.close()
